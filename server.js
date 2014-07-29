@@ -10,8 +10,7 @@ var session 		= require('express-session');
 var mongoose	= require('mongoose');
 
 //Include models
-var Event = require('./models/events.js');
-
+var UserEvent = require('./models/events.js');
 
 mongoose.connect('mongodb://127.0.0.1:27017/joiusv1');
 
@@ -26,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Routes
 app.get('/api/events',function(req,res){
 
-    Event.find(function(err,events){
+    UserEvent.find(function(err,events){
     	if(err) res.send(err);
 
     	res.json(events);

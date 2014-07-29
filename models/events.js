@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
-var eventsSchema = new Schema({
+var userEventsSchema = new Schema({
     name: String,
     description: String,
     image: String,
@@ -10,7 +11,10 @@ var eventsSchema = new Schema({
     isPublic: Boolean,
     closed: Boolean,
     type: String,
-  	createdAt: { type: Date, default: Date.now },
+  	createdAt: { type: Date, default: Date.now }
 });
 
-var Event = mongoose.model('Event', eventsSchema);
+module.exports = mongoose.model('UserEvent', userEventsSchema);
+
+
+
