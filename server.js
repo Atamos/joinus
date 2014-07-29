@@ -9,7 +9,7 @@ var bodyParser 	    = require('body-parser');
 var session 		= require('express-session');
 var mongoose	= require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/joiusv1');
+mongoose.connect('mongodb://127.0.0.1:27017/joiusv1');
 
 
 app.use(express.static(__dirname+'/public'));
