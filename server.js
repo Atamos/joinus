@@ -22,5 +22,24 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//Routes
+app.get('/api/events',function(req,res){
+
+    Event.find(function(err,events){
+    	if(err) res.send(err);
+
+    	res.json(events);
+    });
+});
+
+
+
+
+
+
+
+
 app.listen(port);
 console.log('JoinUs Server listening on port 8080');
+
