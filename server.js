@@ -3,11 +3,14 @@ var express 		= require('express');
 var app 			= express();
 var port	 		= process.env.PORT || 8080;
 
-// var mongoose	= require('mongoose');
 var morgan 			= require('morgan');
 var cookieParser 	= require('cookie-parser');
 var bodyParser 	    = require('body-parser'); 
 var session 		= require('express-session');
+var mongoose	= require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/joiusv1');
+
 
 app.use(express.static(__dirname+'/public'));
 app.use(morgan('dev'));
