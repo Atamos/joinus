@@ -8,8 +8,8 @@ var userEventsSchema = new Schema({
     image: String,
     date: Date,
     author: String,
-    isPublic: Boolean,
-    closed: Boolean,
+    isPublic: { type: Boolean, default: true },
+    closed: { type: Boolean, default: false },
     type: String,
   	createdAt: { type: Date, default: Date.now }
 });

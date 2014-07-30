@@ -12,7 +12,7 @@ var mongoose	= require('mongoose');
 //Include models
 var UserEvent = require('./models/events.js');
 
-mongoose.connect('mongodb://127.0.0.1:27017/joiusv1');
+mongoose.connect('mongodb://127.0.0.1:27017/joinusv1');
 
 
 app.use(express.static(__dirname+'/public'));
@@ -32,7 +32,26 @@ app.get('/api/events',function(req,res){
     });
 });
 
+app.post('/api/events',function(req,res){
 
+	console.log(req.body);
+	 UserEvent.create({
+		name: req.body.name,
+    	description: req.body.description,
+    	date: req.body.date,
+    	author: req.body.author,
+    	isPublic: req.body.isPublic,
+    	type: req.body.type,
+	 }, function(err,events){
+	 		if(err)
+	 			res.send(err);
+
+	 		UserEvent.find(function(err,events){
+	 			if(err) res.send(err);
+	 			res.json(events);
+ 			});
+	 });
+});
 
 
 
