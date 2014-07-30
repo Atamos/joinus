@@ -22,16 +22,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//Routes
+//Get all events
 app.get('/api/events',function(req,res){
 
-    UserEvent.find(function(err,events){
+    UserEvent.find(function(err,uevents){
     	if(err) res.send(err);
 
-    	res.json(events);
+    	res.json(uevents);
     });
 });
 
+//Save an event
 app.post('/api/events',function(req,res){
 
 	console.log(req.body);
@@ -42,19 +43,45 @@ app.post('/api/events',function(req,res){
     	author: req.body.author,
     	isPublic: req.body.isPublic,
     	type: req.body.type,
-	 }, function(err,events){
+	 }, function(err,uevent){
 	 		if(err)
 	 			res.send(err);
 
-	 		UserEvent.find(function(err,events){
+	 		UserEvent.find(function(err,uevents){
 	 			if(err) res.send(err);
-	 			res.json(events);
+	 			res.json(uevents);
  			});
 	 });
 });
 
+//Get a single event
+app.get('/api/event/:event_id',function(req,res){
+	
+	console.log('Get event with id ' + req.params.event_id);
+
+	UserEvent.find({ _id: req.params.event_id },function(err,uevent)
+	{
+		if(err) res.send(err);
+		res.send(uevent);
+	});
+})
 
 
+
+//Delete an event
+app.delete('/api/event/:event_id',function(req,res){
+
+	console.log('Remove event with id '+ req.params.event_id);
+
+ 	UserEvent.remove({ _id: req.params.event_id }, function(err,userevent){
+ 		if(err) res.send(err);
+
+ 		UserEvent.find(function(err,events){
+ 			if(err) res.send(err);
+ 			res.json(events);
+ 		});
+ 	});
+});
 
 
 
