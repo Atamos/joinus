@@ -14,8 +14,8 @@ module.exports = function(grunt){
 		},
 		mochacli: {
 			options: {
-				require: ['should'],
-				files: ['test/*.js']
+				require: ['chai'],
+				files: ['tests/*.js']
 			},
 			spec: {
 				options: {

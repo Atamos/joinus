@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Get all events
 app.get('/api/events',function(req,res){
 
-    UserEvent.find(function(err,uevents){
+	UserEvent.find(function(err,uevents){
     	if(err) res.send(err);
 
     	res.json(uevents);
@@ -81,6 +81,7 @@ app.delete('/api/event/:event_id',function(req,res){
  			res.json(events);
  		});
  	});
+	
 });
 
 
