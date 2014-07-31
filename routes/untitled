@@ -1,0 +1,7 @@
+exports.findAll = function(req,res){
+
+		UserEvent.find(function(err,uevents){
+    		if(err) res.send(err);
+
+    		res.json(uevents);
+});
