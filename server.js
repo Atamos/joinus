@@ -59,12 +59,12 @@ app.get('/api/event/:event_id',function(req,res){
 	
 	console.log('Get event with id ' + req.params.event_id);
 
-	UserEvent.find({ _id: req.params.event_id },function(err,uevent)
+	UserEvent.findOne({ _id: req.params.event_id },function(err,uevent)
 	{
 		if(err) res.send(err);
 		res.send(uevent);
 	});
-})
+});
 
 
 
