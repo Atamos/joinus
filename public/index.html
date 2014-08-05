@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="joinusApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	<script src="core.js" type="text/javascript"></script>
+</head>
+<body ng-controller="eventsController">
+
+There are {{ events.length }} events
+
+
+<form>
+Event name: <input type="text" name="name" ng-model="formData.name"><br/>
+Event description:  <textarea name="description" ng-model="formData.description"></textarea><br/>
+Event type: 
+<select name="type" ng-model="formData.type">
+  <option value="calcetto">Calcetto</option>
+  <option value="basket">Basket</option>
+  <option value="discoteca">Discoteca</option>
+</select><br/>
+<button type="submit" ng-click="createEvent()">Aggiungi evento</button><br/>
+</form>
+
+
+<hr/>
+<ul>
+ <li ng-repeat="event in events">
+ 	<b>{{ event.name }}</b> - {{ event.type }}  <small> {{ event.author }}</small><br/>
+ 	<p>{{ event.description}}
+ 	<button type="submit"  ng-click="deleteEvent(event._id)">Delete event</button>
+ 	<hr/>
+ </li>
+</ul>
+
+
+</body>
+</html>
