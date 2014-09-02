@@ -1,7 +1,22 @@
+process.env.NODE_ENV = 'development';
+
 //var assert = require('chai').assert;
 var expect = require("chai").expect;
 var superagent = require('superagent');
 var srvurl = 'http://127.0.0.1:8080';
+console.log(process.env);
+
+
+describe('configuration test', function () {
+
+  it('should return dev config', function (done) {
+    var config = require(__dirname + '/../config')[process.env.NODE_ENV]; // development config 
+    console.log(config.db_name);
+    expect(config.db_name).to.not.eql(undefined);
+    done();
+  });
+});
+
 
 describe('express rest api server',function(){
 
